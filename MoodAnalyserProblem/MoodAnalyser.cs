@@ -1,4 +1,8 @@
-﻿namespace MoodAnalyserProblem
+﻿
+
+using MoodAnalyserProblem;
+
+namespace MoodAnalysisProblem
 {
     public class MoodAnalyser
     {
@@ -11,6 +15,9 @@
         {
             try
             {
+                if (this.message == string.Empty)
+                    throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.EMPTY_MOOD, "Message is Empty");
+
                 if (message.Contains("Sad"))
                     return "SAD";
                 else
@@ -18,7 +25,7 @@
             }
             catch (NullReferenceException)
             {
-                return "HAPPY";
+                throw new MoodAnalyserException(MoodAnalyserException.ExceptionType.NULL_MOOD, "Message is Null");
             }
         }
 
